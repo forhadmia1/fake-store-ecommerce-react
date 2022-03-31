@@ -1,31 +1,15 @@
-import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { addToDb, getCart } from '../../utilities/fakedb';
+import useCart from '../../hooks/useCart';
+import useProducts from '../../hooks/useProducts';
+import { addToDb, } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 
 const Shop = () => {
-    const [products,setProducts]= useState([])
-    useEffect(()=>{
-        fetch('products.json')
-            .then(res=> res.json())
-            .then(data =>setProducts(data))
-    },[])
-    useEffect(()=>{
-        const allSavedItem =[]
-        const savedCart= getCart()
-        for(const id in savedCart){
-            const item = products.find(product=> product.id === id);
-            if(item){
-                item.quantity= savedCart[id];
-                allSavedItem.push(item)
-            }
-        }
-        setCart(allSavedItem)
-    },[products])
+    const [products,setProducts] = useProducts();
+    const [cart,setCart]=useCart(products)
 
-    const [cart,setCart]=useState([])
     const addToCart=(product)=>{
         const exist = cart.find(pd=> pd.id=== product.id);
         if(exist){
