@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { removeFromDb } from '../../utilities/fakedb';
@@ -24,7 +25,9 @@ const Order = () => {
                 }
             </Col>
             <Col md={2}>
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <Link className='bg-primary p-2 rounded-pill text-white fw-bold text-decoration-none ms-4' to=''>Procced Checkout</Link>
+                </Cart>
             </Col>
         </Row>
     );

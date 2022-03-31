@@ -1,4 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import { addToDb, } from '../../utilities/fakedb';
@@ -35,7 +36,9 @@ const Shop = () => {
                     </Row>
                     </Col>
                     <Col md={2} className='p-0'>
-                        <Cart cart={cart}></Cart>
+                        <Cart cart={cart}>
+                            <Link className='bg-primary p-2 rounded-pill text-white fw-bold text-decoration-none ms-4' to='/order'>Review Order</Link>
+                        </Cart>
                     </Col>
                 </Row>
             </Container>
